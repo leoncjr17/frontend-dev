@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscrição de Curso</title>
+</head>
+<body>
+    <header>
+        <h1>Formulário de Inscrição</h1>
+    </header>
+    
+    <main>
+        <form action="#" method="POST">
+            
+            <fieldset>
+                <legend>Dados Pessoais</legend>
+                
+                <label for="nome">Nome Completo:</label>
+                <input type="text" id="nome" name="nome" required>
+                <br><br>
+                
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+                <br><br>
+                
+                <label for="senha">Crie uma Senha:</label>
+                <input type="password" id="senha" name="senha" required>
+                <br><br>
+                
+                <label for="nascimento">Data de Nascimento:</label>
+                <input type="date" id="nascimento" name="nascimento" required>
+            </fieldset>
+            
+            <br>
+            
+            <fieldset>
+                <legend>Escolaridade</legend>
+                
+                <label for="formacao">Nível de Formação:</label>
+                <select id="formacao" name="formacao">
+                    <option value="fundamental">Ensino Fundamental</option>
+                    <option value="medio">Ensino Médio</option>
+                    <option value="superior">Ensino Superior</option>
+                </select>
+                <br><br>
+                
+                <label for="ano">Ano de Formação:</label>
+                <input type="number" id="ano" name="ano" min="1950" max="2030">
+            </fieldset>
+            
+            <br>
+            
+            <fieldset>
+                <legend>Preferências</legend>
+                
+                <p>Turno desejado:</p>
+                <input type="radio" id="matutino" name="turno" value="matutino">
+                <label for="matutino">Matutino</label>
+                
+                <input type="radio" id="vespertino" name="turno" value="vespertino">
+                <label for="vespertino">Vespertino</label>
+                
+                <input type="radio" id="noturno" name="turno" value="noturno">
+                <label for="noturno">Noturno</label>
+                <br><br>
+                
+                <p>Áreas de interesse:</p>
+                <input type="checkbox" id="exatas" name="area" value="exatas">
+                <label for="exatas">Exatas</label>
+                
+                <input type="checkbox" id="humanas" name="area" value="humanas">
+                <label for="humanas">Humanas</label>
+                
+                <input type="checkbox" id="biologicas" name="area" value="biologicas">
+                <label for="biologicas">Biológicas</label>
+                <br><br>
+                
+                <label for="observacoes">Motivação para o curso:</label><br>
+                <textarea id="observacoes" name="observacoes" rows="4" cols="50"></textarea>
+            </fieldset>
+            
+            <br>
+            <button type="submit">Enviar Inscrição</button>
+            
+        </form>
+    </main>
+    
+    <footer>
+        <p>&copy; 2026 Portal de Cursos</p>
+    </footer>
+</body>
+</html>
