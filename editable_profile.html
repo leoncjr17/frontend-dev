@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editable Profile</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+            color: #102a43;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .card {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 420px;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05), 0 4px 10px rgba(0, 0, 0, 0.03);
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 1.4rem;
+            color: #829ab1;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        #foto-perfil {
+            width: 140px;
+            height: 140px;
+            background-color: #3e8ed0;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            box-shadow: 0 8px 16px rgba(62, 142, 208, 0.2);
+            transition: background-color 0.4s ease;
+        }
+
+        #nome-usuario {
+            font-size: 1.8rem;
+            margin: 10px 0;
+            color: #102a43;
+        }
+
+        #descricao {
+            color: #627d98;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        button {
+            background-color: #3e8ed0;
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button:hover {
+            background-color: #2b6cb0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(43, 108, 176, 0.2);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        #btn-editar {
+            width: auto;
+            min-width: 160px;
+            background-color: #486581;
+        }
+
+        #btn-editar:hover {
+            background-color: #334e68;
+        }
+
+        #menu-edicao {
+            display: none;
+            margin-top: 30px;
+            padding: 25px 20px;
+            background-color: #f0f4f8;
+            border-radius: 16px;
+            border: 1px solid #d9e2ec;
+            flex-direction: column;
+            gap: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .campo-edicao {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: left;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 0.95rem;
+            border: 2px solid #bcccdc;
+            border-radius: 10px;
+            background-color: #ffffff;
+            color: #102a43;
+            box-sizing: border-box;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #3e8ed0;
+            box-shadow: 0 0 0 3px rgba(62, 142, 208, 0.15);
+        }
+
+        input[type="text"]::placeholder {
+            color: #9fb3c8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Perfil de Usuário</h1>
+
+        <div id="foto-perfil"></div>
+
+        <h2 id="nome-usuario">Nome Padrão</h2>
+
+        <p id="descricao">Esta é a descrição padrão do perfil. Clique em Editar para alterá-la e personalizar sua página.</p>
+
+        <button id="btn-editar">Editar Perfil</button>
+
+        <div id="menu-edicao">
+            <div class="campo-edicao">
+                <input type="text" id="input-nome" placeholder="Digite o novo nome">
+                <button id="btn-mudar-nome">Atualizar Nome</button>
+            </div>
+            
+            <div class="campo-edicao">
+                <input type="text" id="input-cor" placeholder="Ex: #ff5733, blue, rgb(0,0,0)">
+                <button id="btn-mudar-cor">Atualizar Cor da Foto</button>
+            </div>
+            
+            <div class="campo-edicao">
+                <input type="text" id="input-descricao" placeholder="Digite a nova descrição">
+                <button id="btn-mudar-descricao">Atualizar Descrição</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const btnEditar = document.getElementById('btn-editar');
+        const menuEdicao = document.getElementById('menu-edicao');
+
+        btnEditar.addEventListener('click', function() {
+            if (menuEdicao.style.display === 'flex') {
+                menuEdicao.style.display = 'none';
+            } else {
+                menuEdicao.style.display = 'flex';
+            }
+        });
+
+        const btnMudarNome = document.getElementById('btn-mudar-nome');
+        const inputNome = document.getElementById('input-nome');
+        const nomeUsuario = document.getElementById('nome-usuario');
+
+        btnMudarNome.addEventListener('click', function() {
+            if (inputNome.value.trim() !== "") {
+                nomeUsuario.textContent = inputNome.value;
+                inputNome.value = "";
+            }
+        });
+
+        const btnMudarCor = document.getElementById('btn-mudar-cor');
+        const inputCor = document.getElementById('input-cor');
+        const fotoPerfil = document.getElementById('foto-perfil');
+
+        btnMudarCor.addEventListener('click', function() {
+            if (inputCor.value.trim() !== "") {
+                fotoPerfil.style.backgroundColor = inputCor.value;
+                inputCor.value = "";
+            }
+        });
+
+        const btnMudarDescricao = document.getElementById('btn-mudar-descricao');
+        const inputDescricao = document.getElementById('input-descricao');
+        const descricao = document.getElementById('descricao');
+
+        btnMudarDescricao.addEventListener('click', function() {
+            if (inputDescricao.value.trim() !== "") {
+                descricao.textContent = inputDescricao.value;
+                inputDescricao.value = "";
+            }
+        });
+    </script>
+
+</body>
+</html>
